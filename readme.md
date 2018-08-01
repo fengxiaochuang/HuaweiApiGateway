@@ -1,5 +1,5 @@
 # HuaweiApiGateway
----
+
 华为网关签名和验证SDK node版本
 > 根据官方提供的ApiGateway-javascript-sdk-1.0.1修改的:
 
@@ -13,6 +13,8 @@
 
 ## sign 接口
 ```js
+const {Signer, HttpRequest} = require("./HuaweiSigner.js")
+
 // 初始化
 let AppKey = "";
 let AppSecret = "";
@@ -25,7 +27,7 @@ request.method = "";
 request.uri = "";
 request.headers = {};
 request.query = "";
-request.body = new Buffer(fs.readFileSync("./kendeji.pcm"));
+request.body = new Buffer(fs.readFileSync("./audio.pcm"));
 
 // 签名并返回http options
 let opt = signer.sign(request);
@@ -33,6 +35,8 @@ let opt = signer.sign(request);
 
 ## verify 接口
 ```js
+const {Signer, HttpRequest} = require("./HuaweiSigner.js")
+
 let appKey = "";
 let appSecret = "";
 var signer = new Signer(appKey, appSecret);
@@ -53,3 +57,5 @@ request.body = req.body;
 let verify = signer.verify(request);
 
 ```
+
+具体使用请参考sign_test和verify_test进行调试.
